@@ -5,13 +5,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * This class is a controller advice that handles exceptions thrown by the PriceController.
+ */
 @ControllerAdvice
 public class PriceControllerAdvice {
     
+
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+    
+
     @ExceptionHandler(NoPricesAvailableException.class)
     public ResponseEntity<String> handleResourceNotFoundException(NoPricesAvailableException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);

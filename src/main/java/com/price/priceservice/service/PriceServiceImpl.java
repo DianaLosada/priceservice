@@ -13,6 +13,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Implementation of the PriceService interface that provides pricing details.
+ */
 @Service
 public class PriceServiceImpl implements PriceService {
 

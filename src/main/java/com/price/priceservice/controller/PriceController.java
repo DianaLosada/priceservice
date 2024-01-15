@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.price.priceservice.service.response.PriceResponse;
 import com.price.priceservice.service.PriceService;
 
-
+/**
+ * The PriceController class provides REST endpoints related to pricing information.
+ */
 @RestController
 @RequestMapping("/api/prices")
 public class PriceController {
@@ -26,6 +28,14 @@ public class PriceController {
         this.priceService = priceService;
     }
 
+    /**
+     * Retrieves the pricing details for a given application date, product ID, and brand ID.
+     *
+     * @param applicationDate The application date in string format.
+     * @param productId       The ID of the product.
+     * @param brandId         The ID of the brand.
+     * @return The ResponseEntity containing the PriceResponse with pricing details.
+     */
     @GetMapping
     public ResponseEntity<PriceResponse> getPrice(@RequestParam String applicationDate,
                                                    @RequestParam BigInteger productId,

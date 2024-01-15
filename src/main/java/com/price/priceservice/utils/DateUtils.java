@@ -25,8 +25,4 @@ public class DateUtils {
         throw new IllegalArgumentException("Invalid date format: " + dateInString);
     }
 
-    public static String convertDateToString(LocalDateTime date) {
-        // Use the first formatter by default
-        return date.format(formatters[0]);
-    }
 }

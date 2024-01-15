@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,13 +28,28 @@ public class Price {
     
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
+    @NotNull
     private Brand brand;
+    
+    @NotNull
     private LocalDateTime startDate;
+    
+    @NotNull
     private LocalDateTime endDate;
+    
+    @NotNull
     private Integer priceList;
+    
+    @NotNull
     private BigInteger productId;
+    
+    @NotNull
     private Integer priority;
+    
+    @NotNull
     private BigDecimal price;
+    
     @Column(length = 3)
+    @NotNull
     private String curr;
 }
