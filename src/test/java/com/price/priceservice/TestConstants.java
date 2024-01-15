@@ -7,5 +7,8 @@ public class TestConstants {
     public static final String PRODUCT_ID_PARAM = "productId";
     public static final String BRAND_ID_PARAM = "brandId";
     public static final String PRICE_PARAM = "price";
+    public static final String PRICE_LIST_PARAM = "priceList";
+    public static final String START_DATE_PARAM = "startDate";
+    public static final String END_DATE_PARAM = "endDate";
 
 }

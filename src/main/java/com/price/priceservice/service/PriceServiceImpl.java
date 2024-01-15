@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 public class PriceServiceImpl implements PriceService {
 
+    private static final int FIRST_PRICE = 0;
     private final PriceRepository priceRepository;
 
     @Autowired
@@ -33,11 +34,10 @@ public class PriceServiceImpl implements PriceService {
                                                  + " at " + applicationDate);
         }
 
-        // Take the first price as the list is ordered by priority in descending order
-        Price applicablePrice = prices.get(0);
+        Price applicablePrice = prices.get(FIRST_PRICE);
 
-        return new PriceResponse(applicablePrice.getBrand().getId(), applicablePrice.getProductId(),
-                                 applicablePrice.getPriceList(), applicablePrice.getStartDate().format(DateTimeFormatter.ISO_DATE_TIME),
-                                 applicablePrice.getEndDate().format(DateTimeFormatter.ISO_DATE_TIME), applicablePrice.getPrice());
+        return new PriceResponse(applicablePrice.getBrand().getId().intValue(), applicablePrice.getProductId().longValue(),
+                                 applicablePrice.getPriceList().intValue(), applicablePrice.getStartDate().format(DateTimeFormatter.ISO_DATE_TIME),
+                                 applicablePrice.getEndDate().format(DateTimeFormatter.ISO_DATE_TIME), applicablePrice.getPrice().floatValue());
     }
 }
