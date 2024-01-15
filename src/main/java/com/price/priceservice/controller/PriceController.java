@@ -3,6 +3,7 @@ package com.price.priceservice.controller;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
+import com.price.priceservice.timed.Timed;
 import com.price.priceservice.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,7 @@ public class PriceController {
      * @return The ResponseEntity containing the PriceResponse with pricing details.
      */
     @GetMapping
+    @Timed
     public ResponseEntity<PriceResponse> getPrice(@RequestParam String applicationDate,
                                                    @RequestParam BigInteger productId,
                                                    @RequestParam Integer brandId) {

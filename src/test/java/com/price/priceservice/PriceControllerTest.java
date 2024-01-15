@@ -51,6 +51,7 @@ class PriceControllerTest {
                 .get(TestConstants.PATH_API_PRICES)
         .then()
                 .statusCode(HttpStatus.OK.value())
+                .contentType(ContentType.JSON)
                 .body(
                         TestConstants.PRICE_PARAM, equalTo(price),
                         TestConstants.BRAND_ID_PARAM, equalTo(BRAND_ID),
@@ -65,7 +66,7 @@ class PriceControllerTest {
     @ParameterizedTest
     @ValueSource(strings = {"2020-06-14 10:00:00", "2020/06/14 10:00:00", "2020-06-14T10:00:00", "2020-06-14-10.00.00"})
     void shouldReturnSamePriceWithDifferentDateFormats(String date) {
-
+        final float PRICE_VALUE = 35.50f;
         given()
             .queryParam(TestConstants.APPLICATION_DATE_PARAM, date)
             .queryParam(TestConstants.PRODUCT_ID_PARAM,PRODUCT_ID)
@@ -75,6 +76,6 @@ class PriceControllerTest {
             .get(TestConstants.PATH_API_PRICES)
         .then()
             .statusCode(HttpStatus.OK.value())
-            .body(TestConstants.PRICE_PARAM, equalTo(35.50f));
+            .body(TestConstants.PRICE_PARAM, equalTo(PRICE_VALUE));
     }
 }

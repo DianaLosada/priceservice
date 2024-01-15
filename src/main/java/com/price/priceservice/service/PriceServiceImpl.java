@@ -1,5 +1,6 @@
 package com.price.priceservice.service;
 
+import com.price.priceservice.converter.PriceConverter;
 import com.price.priceservice.service.response.PriceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class PriceServiceImpl implements PriceService {
 
         Price applicablePrice = prices.get(FIRST_PRICE);
 
-        return new PriceResponse(applicablePrice.getBrand().getId().intValue(), applicablePrice.getProductId().longValue(),
-                                 applicablePrice.getPriceList().intValue(), applicablePrice.getStartDate().format(DateTimeFormatter.ISO_DATE_TIME),
-                                 applicablePrice.getEndDate().format(DateTimeFormatter.ISO_DATE_TIME), applicablePrice.getPrice().floatValue());
+        PriceConverter priceConverter = new PriceConverter();
+        return priceConverter.convert(applicablePrice).orElseThrow(() -> new NoPricesAvailableException("No prices available for product " + productId + " and brand " + brandId
+                                                                                                          + " at " + applicationDate));
     }
 }
